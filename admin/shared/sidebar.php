@@ -16,6 +16,13 @@
                             <li><a class="nav-link" href="list-category.php">List Category</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-boxes-stacked"></i><span>Products</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" href="create-product.php">Create Product</a></li>
+                            <li><a class="nav-link" href="list-product.php">List Product</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </aside>
         </div>
