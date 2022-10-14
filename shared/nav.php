@@ -1,4 +1,14 @@
 <?php
+    if(isset($_SESSION['cart'])){
+        $total_price = 0;
+        $total_qty = count($_SESSION['cart']);
+    foreach($_SESSION['cart'] as $key => $value){
+        $q = "SELECT * from products where product_id = $key";
+        $res = mysqli_query($con, $q);
+        $prod = mysqli_fetch_assoc($res);
+        $total_price += $prod['product_price'] * $value['qty'];
+    }
+    }
 ?>
 <!-- Page Preloder -->
 <div id="preloder">
@@ -25,8 +35,8 @@
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
             <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
+            <a href="shopping-cart.php"><img src="img/icon/cart.png" alt=""> <span><?=@$total_qty?></span></a>
+            <div class="price">PKR <?=@$total_price?></div>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
@@ -111,8 +121,10 @@
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
                         <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                        <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                        <div class="price">$0.00</div>
+                                    <a href="shopping-cart.php"><img src="img/icon/cart.png" alt=""> <span>
+                                        <?=@$total_qty?></span></a>
+</span></a>
+                        <div class="price">PKR <?=@$total_price?></div>
                     </div>
                 </div>
             </div>

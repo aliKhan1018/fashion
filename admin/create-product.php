@@ -8,9 +8,14 @@ if(isset($_POST['add'])){
     $stock = $_POST['stock'];
     $category_id = $_POST['category_id'];
 
-    $dir = "assets/products/";
+    $dir = "assets/img/products/";
     $image_name = basename($_FILES['image']['name']);
-    move_uploaded_file()
+    $up = move_uploaded_file($_FILES['image']["tmp_name"], $dir.$image_name);
+    if($up){
+        $q = "INSERT into `products` values(null, '$name', '$desc', $price, $stock, '$image_name', $category_id)";
+
+        $res = mysqli_query($con, $q);
+    }
 }
 
 ?>
@@ -62,7 +67,7 @@ if(isset($_POST['add'])){
                         ?>
                         <div class="card">
                             <div class="card-body">
-                                <form action="" method="POST">
+                                <form action="" method="POST" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <input type="text" name="name" placeholder="Product Name" id="" class="form-control" required>
